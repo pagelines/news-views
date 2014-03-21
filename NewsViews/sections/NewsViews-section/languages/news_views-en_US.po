@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pagelines - Responsive Typography\n"
+"POT-Creation-Date: 2013-10-04 16:29+0700\n"
+"PO-Revision-Date: 2013-10-04 16:36+0700\n"
+"Last-Translator: \n"
+"Language-Team: Kopasoft <kopasoft@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../NewsViews.php:148
+msgid "Styling"
+msgstr ""
+
+#: ../NewsViews.php:154
+msgid "Title"
+msgstr ""
+
+#: ../NewsViews.php:155
+msgid "News Views"
+msgstr ""
+
+#: ../NewsViews.php:160
+msgid "Text Color"
+msgstr ""
+
+#: ../NewsViews.php:166
+msgid "Background Color"
+msgstr ""
+
+#: ../NewsViews.php:172
+msgid "Button Text"
+msgstr ""
+
+#: ../NewsViews.php:178
+msgid "Button Color"
+msgstr ""
+
+#: ../NewsViews.php:184
+msgid "Use Reponsive Dedign"
+msgstr ""
+
+#: ../NewsViews.php:189
+msgid "Query Arguments"
+msgstr ""
+
+#: ../NewsViews.php:195
+msgid "Select Categories"
+msgstr ""
+
+#: ../NewsViews.php:202
+msgid "Number of articles (total)"
+msgstr ""
+
+#: ../NewsViews.php:210
+msgid "Number of articles (on a Page)"
+msgstr ""
+
+#: ../NewsViews.php:218
+msgid "Order by"
+msgstr ""
+
+#: ../NewsViews.php:233
+msgid "Extra Options"
+msgstr ""
+
+#: ../NewsViews.php:239
+msgid "Select size of image"
+msgstr ""
+
+#: ../NewsViews.php:242
+msgid "Thumbnail"
+msgstr ""
+
+#: ../NewsViews.php:243
+msgid "Medium"
+msgstr ""
+
+#: ../NewsViews.php:244
+msgid "Large"
+msgstr ""
+
+#: ../NewsViews.php:245
+msgid "Full"
+msgstr ""
+
+#: ../NewsViews.php:251
+msgid "Character limit of excerpt"
+msgstr ""
+
+#: ../NewsViews.php:258
+msgid "Character limit of detail"
+msgstr ""
+
+#: ../NewsViews.php:265
+msgid "Hide author"
+msgstr ""
+
+#: ../NewsViews.php:270
+msgid "Hide categories"
+msgstr ""
+
+#: ../NewsViews.php:275
+msgid "Hide date"
+msgstr ""
+
+#: ../NewsViews.php:287
+msgid "Breaking News"
+msgstr ""
+
+#: ../NewsViews.php:298
+msgid "Readmore"
+msgstr ""
+
+#: ../NewsViews.php:349
+msgid "by:"
+msgstr ""

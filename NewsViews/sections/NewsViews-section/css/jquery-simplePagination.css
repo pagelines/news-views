@@ -1,0 +1,49 @@
+/**
+* CSS themes for simplePagination.js
+* Author: Flavius Matis - http://flaviusmatis.github.com/
+* URL: https://github.com/flaviusmatis/simplePagination.js
+*/
+
+ul.simple-pagination {
+    list-style: none;
+}
+
+.simple-pagination {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px 5px 0;
+    margin: 0;
+}
+
+.simple-pagination ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.simple-pagination li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.light-theme a, .light-theme span {            
+    text-decoration: none;
+}
+
+.light-theme a:hover {    
+}
+
+.light-theme .current {
+    cursor: pointer;
+}
+
+.light-theme .ellipse {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: bold;
+    cursor: default;
+}

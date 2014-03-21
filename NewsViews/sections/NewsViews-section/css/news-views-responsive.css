@@ -1,0 +1,21 @@
+@media only screen and (max-width: 767px) {
+    .kp-list-item .kp-post-exceprt{
+        display: none !important;
+    }
+    .kp-list-item h5.kp-post-title{
+        border-bottom: none !important;
+    }
+
+    .light-theme a, 
+    .light-theme span{
+        display: inline-block;
+        padding: 5px;
+    }
+    
+    .kp-list{
+        width: 35.5%;    
+    }
+    .kp-detail{
+        width: 61.5%;    
+    }
+}

@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'silkcons';
+    src:url('../fonts/silkcons.eot');
+    src:url('../fonts/silkcons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/silkcons.woff') format('woff'),
+        url('../fonts/silkcons.ttf') format('truetype'),
+        url('../fonts/silkcons.svg#silkcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+    font-family: 'silkcons';
+    content: attr(data-icon);
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.kp-icon-arrow-left, 
+.kp-icon-arrow-right {
+    font-family: 'silkcons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.kp-icon-arrow-left:before {
+    content: "\e000";
+}
+.kp-icon-arrow-right:before {
+    content: "\e001";
+}

@@ -33,4 +33,4 @@ Minor Changes:<br />
 3. Navigate to your DMS editor panel > Add To Page
 4. Drag the News Views section on to your page template
 5. Experiment with the options until you find the perfect fit for you
-6. Make sure that in your WordPress settings you have Blog pages show at most set to at least the number you want to display in the left column
+6. Make sure that in your WordPress settings you have "Blog pages show at most" set to at least the number you want to display in the left column

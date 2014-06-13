@@ -14,15 +14,15 @@ First release for PageLines Framwework now discontinued
 First release for PageLines DMS
 
 * Version 2.1.0
-Major Changes:
-Added scrolling functionality with ability to set speed of transition
-Added mouse hover functionality so that scrolling pauses on hover 
-Added mouse hover functionality so that posts change in left hand column
-Improved transition of posts in right hand column to make them smoother
+* Major Changes:
+* Added scrolling functionality with ability to set speed of transition
+* Added mouse hover functionality so that scrolling pauses on hover 
+* Added mouse hover functionality so that posts change in left hand column
+* Improved transition of posts in right hand column to make them smoother
 
-Minor Changes:
-Replaced Silk Icons with Font Awesome
-Minor CSS changes - switched 1px border to box shadow
+* Minor Changes:
+* Replaced Silk Icons with Font Awesome
+* Minor CSS changes - switched 1px border to box shadow
 
 
 

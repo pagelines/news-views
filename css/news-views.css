@@ -116,11 +116,11 @@ ul.kp-list-pagination li:last-child{
 }
 
 .carousel.vertical .item {
-    -webkit-transition: 0.6s ease-in-out top;
-    -moz-transition: 0.6s ease-in-out top;
-    -ms-transition: 0.6s ease-in-out top;
-    -o-transition: 0.6s ease-in-out top;
-    transition: 0.6s ease-in-out top;
+    -webkit-transition: 0.3s ease-in-out top, 0.1s ease-in-out opacity;
+    -moz-transition: 0.3s ease-in-out top, 0.1s ease-in-out opacity;
+    -ms-transition: 0.3s ease-in-out top, 0.1s ease-in-out opacity;
+    -o-transition: 0.3s ease-in-out top, 0.1s ease-in-out opacity;
+    transition: 0.3s ease-in-out top, 0.1s ease-in-out opacity;
 }
 
 .carousel.vertical .active {
@@ -148,6 +148,24 @@ ul.kp-list-pagination li:last-child{
     top: 100%;
 }
 
-.carousel.vertical .item {
+.carousel.vertical .item{
     left: 0;
-}​
+}
+.m-wapper-img{
+	text-align: center!important;
+}
+.m-wapper-img img{
+	width:auto!important;
+}
+.kp-detail{
+	transition: height 1s ease 0s;
+    -moz-transition: height 1s ease 0s;
+    -webkit-transition: height 1s ease 0s;
+    -o-transition: height 1s ease 0s;
+}
+.kp-detail .kp-detail-item{
+	opacity:0;
+}
+.kp-detail .kp-detail-item.active{
+	opacity:1;
+}

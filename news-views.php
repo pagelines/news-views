@@ -1,14 +1,14 @@
 <?php
 /*
-  Section: News Views
   Plugin Name: News Views
   Author: Kyle & Irving
   Author URI: http://pagelines.kyle-irving.co.uk/
   Plugin URI: http://pagelines.kyle-irving.co.uk/news-views/
-  Version: 2.0.1
-  Description: Display a list of posts, order by ID, author, title , created date, modified date, random OR comment count
+  Version: 2.1.0
+  Description: Display a list of posts order by ID, author, title , created date, modified date, random OR comment count
   Class Name: NewsViews
   PageLines: true
+  Section: true
   Filter: component
  */
 
@@ -35,7 +35,7 @@ class NewsViews extends PageLinesSection {
     }
 
     function section_scripts() {
-        global $wp_styles, $is_IE;
+        global $is_IE;
 
         if (!wp_script_is('jquery-bootstrap-carousel'))
             wp_enqueue_script('jquery-bootstrap-carousel', $this->base_url . '/js/bootstrap-carousel.js', array('jquery'), NULL, true);
@@ -95,9 +95,13 @@ class NewsViews extends PageLinesSection {
             }
 
             .kp-list-item h5.kp-post-title{
-                border-bottom:1px solid <?php echo $txt_color; ?>;
             }
 
+            .light-theme a, 
+            .light-theme span, 
+            .kp-post-categories a,
+            .kp-post-readmore a{
+            }
             .kp-post-categories a{
                 background-color: <?php echo $this->adjust_color_lighten_darken($bt_color, 20); ?>;
             }
@@ -142,7 +146,7 @@ class NewsViews extends PageLinesSection {
             array(
                 'title' => __('Styling', 'news_views'),
                 'type' => 'multi',
-                'col'	=> 1,
+				'col'	=> 1,
                 'opts' => array(
                     array(
                         'key' => 'section-title',
@@ -183,8 +187,8 @@ class NewsViews extends PageLinesSection {
             ),
             array(
                 'title' => __('Query Arguments', 'news_views'),
-                'col'	=> 2,
                 'type' => 'multi',
+				'col'	=> 2,
                 'opts' => array(
                     array(
                         'key' => 'categories',
@@ -210,6 +214,12 @@ class NewsViews extends PageLinesSection {
                         'count_number' => 100
                     ),
                     array(
+                        'key' => 'interval',
+                        'type' => 'text',
+                        'label' => __('Slideshow Speed (millisecond). Set 0 to disable "autoplay"', 'news_views'),
+                        'default' => 2000                        
+                    ),
+                    array(
                         'key' => 'orderby',
                         'type' => 'select_same',
                         'label' => __('Order by', 'news_views'),
@@ -228,21 +238,9 @@ class NewsViews extends PageLinesSection {
             ),
             array(
                 'title' => __('Extra Options', 'news_views'),
-                'col'	=> 1,
                 'type' => 'multi',
-                'opts' => array(
-                    array(
-                        'key' => 'size_of_thumbnail',
-                        'type' => 'select',
-                        'label' => __('Select size of image', 'news_views'),
-                        'default' => 'link',
-                        'opts' => array(
-                            'thumbnail' => array('name' => __('Thumbnail', 'news_views')),
-                            'medium' => array('name' => __('Medium', 'news_views')),
-                            'large' => array('name' => __('Large', 'news_views')),
-                            'full' => array('name' => __('Full', 'news_views'))
-                        )
-                    ),
+				'col'	=> 3,
+                'opts' => array(                    
                     array(
                         'key' => 'character_limit_of_excerpt',
                         'type' => 'select_same',
@@ -272,6 +270,11 @@ class NewsViews extends PageLinesSection {
                         'type' => 'check',
                         'label' => __('Hide date', 'news_views')
                     ),
+					array(
+                        'key' => 'is_hover_date_pause',
+                        'type' => 'check',
+                        'label' => __('Hover Article Pause Slide', 'news_views')
+                    ),
                 )
             )
         );
@@ -287,17 +290,20 @@ class NewsViews extends PageLinesSection {
         $number_of_articles = (int) $this->opt('number_of_articles', array('default' => 20));
         $orderby = $this->opt('orderby');
         $post_per_page = (int) $this->opt('post_per_page', array('default' => 4));
-
+        $interval = (int) $this->opt('interval', array('default' => 2000));
+        
 
         $is_hide_author = $this->opt('is_hide_author', array('default' => false));
         $is_hide_categories = $this->opt('is_hide_categories', array('default' => false));
         $is_hide_date = $this->opt('is_hide_date', array('default' => false));
-
+		
+        $is_hover_date_pause = $this->opt('is_hover_date_pause', array('default' => false));
+		
         $button_text = $this->opt('button_text', array('default' => __('Readmore', 'news_views')));
         $character_limit_of_excerpt = (int) $this->opt('character_limit_of_excerpt', array('default' => 100));
         $character_limit_of_detail = (int) $this->opt('character_limit_of_detail', array('default' => 200));
 
-        $size_of_thumbnail = $this->opt('size_of_thumbnail', array('default' => 'medium'));
+        $size_of_thumbnail = 'full';
 
         $query = array(
             'post_type' => 'post',
@@ -335,19 +341,19 @@ class NewsViews extends PageLinesSection {
 
                 $list[$post_id] = sprintf('<li class="kp-list-item %s" data-target="#%s" data-slide-to="%d" data-page-number="%d" style="display:%s;">', ('0' == $loop_index) ? 'active' : '', $carousel_id, $loop_index, $page_index, (1 == $page_index) ? 'block' : 'none');
                 $list[$post_id].= sprintf('<h5 class="kp-post-title">%s</h5>', $post_title);
-                $list[$post_id].= sprintf('<p class="kp-post-exceprt">%s ...</p>', $this->get_summary($excerpt, $character_limit_of_excerpt));
+                $list[$post_id].= sprintf('<p class="kp-post-exceprt">%s</p>', $this->get_summary($excerpt, $character_limit_of_excerpt));
                 $list[$post_id].= '</li>';
 
 
                 $details[$post_id] = sprintf('<div class="kp-detail-item item %s">', (0 == $loop_index) ? 'active' : '');
-                $details[$post_id] .= get_the_post_thumbnail($post_id, $size_of_thumbnail);
+                $details[$post_id] .= '<div class="m-wapper-img">'.get_the_post_thumbnail($post_id, $size_of_thumbnail).'</div>';
                 $details[$post_id] .= sprintf('<h4 class="kp-post-title">%s</h4>', $post_title);
 
                 if (!$is_hide_date || !$is_hide_author) {
                     $details[$post_id] .= sprintf('<p class="kp-post-meta">&boxh; %s %s</p>', $is_hide_date ? '' : get_the_date(), $is_hide_author ? '' : __('by:', 'news_views') . ' ' . get_the_author());
                 }
 
-                $details[$post_id] .= sprintf('<p class="kp-post-exceprt">%s ...</p>', $this->get_summary($excerpt, $character_limit_of_detail));
+                $details[$post_id] .= sprintf('<p class="kp-post-exceprt">%s</p>', $this->get_summary($excerpt, $character_limit_of_detail));
 
                 $details[$post_id] .= '<div class="kp-post-meta-second">';
 
@@ -371,7 +377,7 @@ class NewsViews extends PageLinesSection {
             endwhile;
         endif;
         ?>
-        <div class="kp-news-views">
+        <div class="kp-news-views <?php if($is_hover_date_pause){ echo "pause_slide";} ?>" data-interval="<?php echo $interval; ?>"  >
             <?php echo empty($title) ? '' : sprintf('<h3 class="kp-section-title">%s</h3>', $title); ?>
 
             <div class="kp-half kp-left kp-list">
@@ -379,7 +385,7 @@ class NewsViews extends PageLinesSection {
                     <?php echo implode('', $list); ?>
                 </ul>
                 <?php if ($posts->found_posts > $post_per_page): ?>
-                    <ul class="kp-list-pagination"></ul>
+                    <ul class="kp-list-pagination" data-limit="<?php echo $post_per_page;?>"></ul>
                 <?php endif; ?>
             </div>
 

@@ -4,7 +4,7 @@
   Author: Kyle & Irving
   Author URI: http://pagelines.kyle-irving.co.uk/
   Plugin URI: http://pagelines.kyle-irving.co.uk/news-views/
-  Version: 2.1.1
+  Version: 2.1.2
   Description: Display a list of posts order by ID, author, title , created date, modified date, random OR comment count
   Class Name: NewsViews
   PageLines: true
@@ -281,7 +281,7 @@ class NewsViews extends PageLinesSection {
         return $opts;
     }
 
-    /**
+  /**
      * Actual section template.
      */
     function section_template() {
@@ -310,13 +310,18 @@ class NewsViews extends PageLinesSection {
             'orderby' => $orderby,
             'post_per_page' => $number_of_articles
         );
-
+        /*
         if (in_array('0', $categories)) {
             unset($categories[0]);
             if (!empty($categories))
                 $query['cat'] = implode(',', $categories);
         }
-
+        */
+		if (!in_array('0', $categories)) {
+            //unset($categories[0]);
+            if (!empty($categories))
+                $query['cat'] = implode(',', $categories);
+        }
         $posts = new WP_Query($query);
 
         $list = array();

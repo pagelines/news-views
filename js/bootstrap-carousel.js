@@ -1,6 +1,6 @@
 /* ==========================================================
- * bootstrap-carousel.js v2.0.3
- * http://twitter.github.com/bootstrap/javascript.html#carousel
+ * bootstrap-carousel2.js v2.0.3
+ * http://twitter.github.com/bootstrap/javascript.html#carousel2
  * ==========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -26,7 +26,7 @@
  /* CAROUSEL CLASS DEFINITION
   * ========================= */
 
-  var Carousel = function (element, options) {
+  var Carousel2 = function (element, options) {
     this.$element = $(element)
     this.options = options
     this.options.slide && this.slide(this.options.slide)
@@ -35,7 +35,7 @@
       .on('mouseleave', $.proxy(this.cycle, this))
   }
 
-  Carousel.prototype = {
+  Carousel2.prototype = {
 
     cycle: function (e) {
       if (!e) this.paused = false
@@ -133,35 +133,35 @@
  /* CAROUSEL PLUGIN DEFINITION
   * ========================== */
 
-  $.fn.carousel = function (option) {
+  $.fn.carousel2 = function (option) {
     return this.each(function () {
       var $this = $(this)
-        , data = $this.data('carousel')
-        , options = $.extend({}, $.fn.carousel.defaults, typeof option == 'object' && option)
-      if (!data) $this.data('carousel', (data = new Carousel(this, options)))
+        , data = $this.data('carousel2')
+        , options = $.extend({}, $.fn.carousel2.defaults, typeof option == 'object' && option)
+      if (!data) $this.data('carousel2', (data = new Carousel2(this, options)))
       if (typeof option == 'number') data.to(option)
       else if (typeof option == 'string' || (option = options.slide)) data[option]()
       else if (options.interval) data.cycle()
     })
   }
 
-  $.fn.carousel.defaults = {
+  $.fn.carousel2.defaults = {
     interval: 5000
   , pause: 'hover'
   }
 
-  $.fn.carousel.Constructor = Carousel
+  $.fn.carousel2.Constructor = Carousel2
 
 
  /* CAROUSEL DATA-API
   * ================= */
 
   $(function () {
-    $('body').on('click.carousel.data-api', '[data-slide]', function ( e ) {
+    $('body').on('click.carousel2.data-api', '[data-slide]', function ( e ) {
       var $this = $(this), href
         , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
         , options = !$target.data('modal') && $.extend({}, $target.data(), $this.data())
-      $target.carousel(options)
+      $target.carousel2(options)
       e.preventDefault()
     })
   })
